@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-merah-muda: #FAF8F1;
+  --color-biru-hitam: #24293E;
+}
+
+@layer base {
+  .font-archivo-black {
+    font-family: 'Archivo Black', sans-serif;
+  }
+  .font-oswald {
+    font-family: 'Oswald', sans-serif;
+  }
+  .font.barlow {
+    font-family: 'Barlow', sans-serif;
+  }
+}
