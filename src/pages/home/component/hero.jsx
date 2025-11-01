@@ -9,8 +9,8 @@ const Hero = () => {
 >
 
       <div className="container mx-auto px-6 py-20 text-white">
-        <h2 className="text-6xl md:text-8xl font-extrabold font-archivo-black">FINANCING</h2>
-        <h2 className="text-6xl md:text-8xl font-extrabold text-green-500 font-archivo-black">THE FUTURE</h2>
+        <h2 className="text-6xl md:text-8xl font-extrabold font-archivo-black">PRODUKSI</h2>
+        <h2 className="text-6xl md:text-8xl font-extrabold text-green-500 font-archivo-black">PERKEBUNAN INDONESIA</h2>
             <div className="bg-green-700 mx-auto inline-block px-8 py-3 rounded-lg my-4">
                 <p className="text-white  font-bold">Get Funding</p>
             </div>

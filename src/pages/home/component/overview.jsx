@@ -3,12 +3,18 @@ import Papa from 'papaparse';
 import { motion } from 'framer-motion';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  Area // Pastikan 'Area' di-import
+  Area
 } from 'recharts';
 
 import ChartBackground from '../../../assets/hero.png';
 
-// --- Komponen Custom Tooltip (IDE 2) ---
+// Import 4 gambar lingkaran Anda
+import Icon1 from '../../../assets/fish.png';
+import Icon2 from '../../../assets/harvest.png';
+import Icon3 from '../../../assets/mountain.png';
+import Icon4 from '../../../assets/energy.png';
+
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -54,30 +60,98 @@ const Overview = () => {
     });
   }, []);
 
+  const iconVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
   return (
     <section className="bg-merah-muda py-16 px-6 flex flex-col items-center">
 
-      {/* Bagian Hero (Tidak Berubah) */}
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl">
-          GOOD FOR<br />THE PLANET.<br />AND YOUR<br />BUSINESS
-        </h2>
-        <p className="text-gray-600 leading-relaxed mb-6">
-          We are on a mission to help good businesses grow.<br />
-          This is why we reward sustainable businesses with lower fees,<br />
-          freeing up even more of your cash. Get started and access funding in 5 minutes.
-        </p>
-        <div className="bg-green-700 mx-auto inline-block px-8 py-3 rounded-lg hover:bg-green-800 transition">
-          <p className="text-white font-bold">Get Funding</p>
+      {/* Bagian Hero Dibungkus */}
+      <div className="relative w-full max-w-5xl mx-auto mb-10"> 
+      
+        {/* Teks hero */}
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl">
+            GOOD FOR<br />THE PLANET.<br />AND <span className='text-orange-300'>YOUR</span><br />BUSINESS
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-6">
+            We are on a mission to help good businesses grow.<br />
+            This is why we reward sustainable businesses with lower fees,<br />
+            freeing up even more of your cash. Get started and access funding in 5 minutes.
+          </p>
+          <div className="bg-green-700 mx-auto inline-block px-8 py-3 rounded-lg hover:bg-green-800 transition">
+            <p className="text-white font-bold">Get Funding</p>
+          </div>
         </div>
+
+        {/* --- MODIFIKASI DIMULAI DI SINI (CLASSNAME BERUBAH) --- */}
+
+        {/* Gambar 1 (Kiri Atas) */}
+        <motion.div
+          variants={iconVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          // Kelas responsif ditambahkan
+          className="absolute top-4 left-4 w-16 h-16 md:top-8 md:left-8 md:w-24 md:h-24 lg:top-10 lg:left-10 lg:w-28 lg:h-28"
+        >
+          <img src={Icon1} alt="Sustainability Icon 1" className="rounded-full object-cover" />
+        </motion.div>
+
+        {/* Gambar 2 (Kanan Atas) */}
+        <motion.div
+          variants={iconVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+          // Kelas responsif ditambahkan
+          className="absolute top-8 right-4 w-16 h-16 md:top-16 md:right-8 md:w-28 md:h-28 lg:top-20 lg:right-10 lg:w-32 lg:h-32"
+        >
+          <img src={Icon2} alt="Sustainability Icon 2" className="rounded-full object-cover" />
+        </motion.div>
+
+        {/* Gambar 3 (Kiri Bawah) */}
+        <motion.div
+          variants={iconVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.6 }}
+          viewport={{ once: true }}
+          // Kelas responsif ditambahkan (dibuat sedikit lebih kecil)
+          className="absolute bottom-20 left-2 w-14 h-14 md:bottom-16 md:left-0 md:w-20 md:h-20 lg:bottom-20 lg:left-0 lg:w-24 lg:h-24"
+        >
+          <img src={Icon3} alt="Sustainability Icon 3" className="rounded-full object-cover" />
+        </motion.div>
+
+        {/* Gambar 4 (Kanan Bawah) */}
+        <motion.div
+          variants={iconVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.8 }}
+          viewport={{ once: true }}
+          // Kelas responsif ditambahkan
+          className="absolute bottom-24 right-8 w-16 h-16 md:bottom-20 md:right-16 md:w-24 md:h-24 lg:bottom-10 lg:right-20 lg:w-28 lg:h-28"
+        >
+          <img src={Icon4} alt="Sustainability Icon 4" className="rounded-full object-cover" />
+        </motion.div>
+        
+        {/* --- AKHIR DARI MODIFIKASI --- */}
+        
       </div>
 
-       <div className='mt-10 mb-4 text-left'>
-        <p className='bg-green-500 mx-auto inline-block px-2 py-1 rounded-full mb-2'>01</p>
-        <h2 className='font-oswald font-extrabold text-4xl'>GROW WITH THE FLOW</h2>
+
+      <div className='mt-10 mb-4 text-left max-w-4xl w-full'>
+        <p className='bg-green-500 mx-auto inline-block px-2 py-1 rounded-full mb-2 font-bold'>01</p>
+        <h2 className='font-oswald font-extrabold text-4xl'>GROW WITH <span className='text-orange-300'>THE</span> FLOW</h2>
         <p className='text-md my-4'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
       </div>
-      {/* Chart Section */}
+
+      {/* Chart Section (Tidak Berubah) */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -92,41 +166,27 @@ const Overview = () => {
         <div
           className="absolute inset-0 z-10 bg-white/80 backdrop-blur-md border border-white/40"
         />
-
-        {/* Lapisan Konten (Chart) */}
         <div className="relative z-20 p-6">
-
           <h1 className="text-2xl font-archivo-black text-gray-700 mb-4 text-center">
             Tren Rata-rata Produksi Perkebunan (2009–2024)
           </h1>
-
           {data.length > 0 ? (
             <ResponsiveContainer width="100%" height={350}>
               <LineChart data={data}>
-
-                {/* IDE 1: Defs untuk gradient Area Fill */}
                 <defs>
                   <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity={0.8} /> {/* Indigo-500, opacity 80% */}
-                    <stop offset="100%" stopColor="#c7d2fe" stopOpacity={0.0} /> {/* Indigo-200, full transparent */}
+                    <stop offset="0%" stopColor="#6366f1" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="#c7d2fe" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-
-                {/* IDE 3: Grid dibuat lebih samar & hanya horizontal */}
                 <CartesianGrid
                   vertical={false} 
                   stroke="#e5e7eb" 
                   strokeOpacity={0.7} 
                 />
-
                 <XAxis dataKey="year" tick={{ fill: '#374151' }} />
                 <YAxis tick={{ fill: '#374151' }} />
-
-                {/* IDE 2: Tooltip menggunakan komponen kustom */}
                 <Tooltip content={<CustomTooltip />} />
-
-                {/* IDE 1: KOMPONEN <Area> untuk mengisi area di bawah garis */}
-                {/* Ini harus diletakkan SEBELUM <Line> agar tidak menutupi garisnya */}
                 <Area
                   type="monotone"
                   dataKey="produksi"
@@ -134,8 +194,6 @@ const Overview = () => {
                   fill="url(#chartFill)" 
                   animationDuration={1600}
                 />
-
-                {/* IDE 1 & 3: KOMPONEN <Line> untuk garis utama */}
                 <Line
                   type="monotone"
                   dataKey="produksi"
@@ -150,7 +208,6 @@ const Overview = () => {
                   }}
                   animationDuration={1600}
                 />
-
               </LineChart>
             </ResponsiveContainer>
           ) : (
