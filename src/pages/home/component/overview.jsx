@@ -70,11 +70,11 @@ const Overview = () => {
     <section className="bg-merah-muda py-16 px-6 flex flex-col items-center">
 
       {/* Bagian Hero (Tidak Berubah) */}
-      <div className="relative w-full max-w-5xl mx-auto mb-10"> 
+      <div className="relative w-full max-w-5xl mx-auto mb-10 md:max-w-none"> 
         {/* ... (kode hero section Anda tetap sama) ... */}
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl">
-            GOOD FOR<br className='md:invisible'/>THE PLANET.<br />AND <span className='text-orange-300'>YOUR</span><br />BUSINESS
+          <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl md:py-6">
+            GOOD FOR<br className='md:hidden'/> THE PLANET.<br className='md:hidden' /> AND <span className='text-orange-300'>YOUR</span><br className='md:hidden' />BUSINESS
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             We are on a mission to help good businesses grow.<br />
@@ -91,7 +91,7 @@ const Overview = () => {
           whileInView="visible"
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="absolute top-4 left-4 w-16 h-16 md:top-8 md:left-8 md:w-24 md:h-24 lg:top-10 lg:left-10 lg:w-28 lg:h-28"
+          className="absolute top-4 left-4 w-16 h-16 md:top-8 md:left-8 md:w-24 md:h-24 lg:top-10 lg:left-10 lg:w-60 lg:h-32 rotate-45 z-50"
         >
           <img src={Icon1} alt="Sustainability Icon 1" className="rounded-full object-cover" />
         </motion.div>
@@ -101,7 +101,7 @@ const Overview = () => {
           whileInView="visible"
           transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
-          className="absolute top-8 right-4 w-16 h-16 md:top-16 md:right-8 md:w-28 md:h-28 lg:top-20 lg:right-10 lg:w-32 lg:h-32"
+          className="absolute top-8 right-4 w-16 h-16 md:top-16 md:right-8 md:w-28 md:h-28 lg:top-20 lg:right-10 lg:w-60 rotate-[-20deg] lg:h-32"
         >
           <img src={Icon2} alt="Sustainability Icon 2" className="rounded-full object-cover" />
         </motion.div>
@@ -111,7 +111,7 @@ const Overview = () => {
           whileInView="visible"
           transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: true }}
-          className="absolute bottom-20 left-2 w-14 h-14 md:bottom-16 md:left-0 md:w-20 md:h-20 lg:bottom-20 lg:left-0 lg:w-24 lg:h-24"
+          className="absolute bottom-20 left-2 w-14 h-14 md:bottom-16 md:left-0 md:w-20 md:h-20 lg:bottom-20 lg:left-30 lg:w-42 rotate-[-20deg] lg:h-24"
         >
           <img src={Icon3} alt="Sustainability Icon 3" className="rounded-full object-cover" />
         </motion.div>
@@ -121,30 +121,24 @@ const Overview = () => {
           whileInView="visible"
           transition={{ duration: 0.5, delay: 0.8 }}
           viewport={{ once: true }}
-          className="absolute bottom-24 right-8 w-16 h-16 md:bottom-20 md:right-16 md:w-24 md:h-24 lg:bottom-10 lg:right-20 lg:w-28 lg:h-28"
+          className="absolute bottom-24 right-8 w-16 h-16 md:bottom-20 md:right-16 md:w-24 md:h-24 lg:bottom-10 lg:right-20 rotate-45 lg:w-42 lg:h-28"
         >
           <img src={Icon4} alt="Sustainability Icon 4" className="rounded-full object-cover" />
         </motion.div>
       </div>
 
-      {/* --- INI BAGIAN UTAMANYA (BAGIAN CHART) --- */}
-      {/* 1. PERBAIKAN: max-w-4xl diubah jadi max-w-6xl DAN md:gap-8 jadi md:gap-16 */}
-      <div className='mt-10 w-full max-w-6xl md:flex md:gap-16 md:items-center'>
-        
-        {/* 2. Ini KOLOM KIRI (TEKS) - lebarnya 50% di layar 'md' */}
-        <div className='mb-4 md:mb-0 md:w-1/2 text-left'>
-          <p className='bg-green-500 mx-auto inline-block px-2 py-1 rounded-full mb-2 font-bold'>01</p>
-          <h2 className='font-oswald font-extrabold text-4xl'>GROW WITH <span className='text-orange-300'>THE</span> FLOW</h2>
-          <p className='text-md my-4'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
+      <div className='mt-10 w-full max-w-6xl lg:max-w-none md:flex md:gap-16 md:items-stretch lg:px-10'>
+        <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
+          <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>01</p>
+          <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>GROW WITH <span className='text-orange-300'><br className='hidden lg:block' />THE</span> FLOW</h2>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
         </div>
-
-        {/* 3. Ini KOLOM KANAN (CHART) - lebarnya 50% di layar 'md' */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="relative w-full md:w-1/2 shadow-2xl rounded-2xl overflow-hidden" // 'md:w-1/2' adalah kuncinya
+          className="relative w-full md:w-1/2 shadow-2xl rounded-2xl overflow-hidden"
         >
           {/* ... (kode chart Anda ada di dalam sini) ... */}
           <div
@@ -206,19 +200,13 @@ const Overview = () => {
       </div>
       {/* --- AKHIR DARI BAGIAN CHART --- */}
 
-
-      {/* --- INI BAGIAN UTAMANYA (BAGIAN GAMBAR) --- */}
-      {/* 1. PERBAIKAN: max-w-4xl diubah jadi max-w-6xl DAN md:gap-8 jadi md:gap-16 */}
-      <div className='mt-16 w-full max-w-6xl md:flex md:flex-row-reverse md:gap-16 md:items-center'>
-        
-        {/* 2. Ini KOLOM KANAN (TEKS) - lebarnya 50% di layar 'md' */}
-        <div className='mb-4 md:mb-0 md:w-1/2 text-right'>
-          <p className='bg-green-500 mx-auto inline-block px-2 py-1 rounded-full mb-2 font-bold'>01</p>
-          <h2 className='font-oswald font-extrabold text-4xl'>PICTURE <span className='text-orange-300'>OF</span> FARMER</h2>
-          <p className='text-md my-4'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
+      <div className='mt-10 w-full max-w-6xl lg:max-w-none md:flex md:gap-16 md:items-stretch lg:px-10'>
+        <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
+          <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>02</p>
+          <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>PICTURE <span className='text-orange-300'><br className='hidden lg:block' />OF</span> FARMER</h2>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
         </div>
-
-        {/* 3. Ini KOLOM KIRI (GAMBAR) - lebarnya 50% di layar 'md' */}
+        
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
