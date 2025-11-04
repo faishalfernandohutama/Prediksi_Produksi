@@ -3,17 +3,16 @@ import Papa from 'papaparse';
 import { motion } from 'framer-motion';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  Area
+  Area, Label
 } from 'recharts';
 
 import ChartBackground from '../../../assets/hero.png';
-
-// Import 4 gambar lingkaran Anda
 import Icon1 from '../../../assets/fish.png';
 import Icon2 from '../../../assets/harvest.png';
 import Icon3 from '../../../assets/mountain.png';
 import Icon4 from '../../../assets/energy.png';
 import PerkebunanImage from '../../../assets/farmer.png';
+import CatBoostImage from '../../../assets/catboost.png';
 
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -68,10 +67,7 @@ const Overview = () => {
 
   return (
     <section className="bg-merah-muda py-16 px-6 flex flex-col items-center">
-
-      {/* Bagian Hero (Tidak Berubah) */}
       <div className="relative w-full max-w-5xl mx-auto mb-10 md:max-w-none"> 
-        {/* ... (kode hero section Anda tetap sama) ... */}
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl md:py-6">
             GOOD FOR<br className='md:hidden'/> THE PLANET.<br className='md:hidden' /> AND <span className='text-orange-300'>YOUR</span><br className='md:hidden' />BUSINESS
@@ -140,7 +136,7 @@ const Overview = () => {
           viewport={{ once: true }}
           className="relative w-full md:w-1/2 shadow-2xl rounded-2xl overflow-hidden"
         >
-          {/* ... (kode chart Anda ada di dalam sini) ... */}
+          {/* <Chart data */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${ChartBackground})` }}
@@ -198,8 +194,6 @@ const Overview = () => {
           </div>
         </motion.div>
       </div>
-      {/* --- AKHIR DARI BAGIAN CHART --- */}
-
       <div className='mt-10 w-full max-w-6xl lg:max-w-none md:flex md:gap-16 md:items-stretch lg:px-10'>
         <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
           <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>02</p>
@@ -221,7 +215,31 @@ const Overview = () => {
           />
         </motion.div>
       </div>
-      {/* --- AKHIR DARI BAGIAN GAMBAR --- */}
+
+      <div className='mt-10 w-full max-w-6xl lg:max-w-none md:flex md:gap-16 md:items-stretch lg:px-10'>
+        
+        {/* Kolom Teks Kiri */}
+        <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
+          <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>03</p>
+          <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>CATBOOST <span className='text-orange-300'><br className='hidden lg:block' />INSIGHT</span></h2>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>Implementasi model machine learning canggih untuk wawasan data yang lebih mendalam.</p>
+        </div>
+        
+        {/* Kolom Gambar Kanan */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+          className="relative w-full md:w-1/2 shadow-2xl rounded-2xl overflow-hidden"
+        >
+          <img 
+            src={CatBoostImage}
+            alt="Gambar Algoritma CatBoost" 
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+      </div>
 
     </section>
   );

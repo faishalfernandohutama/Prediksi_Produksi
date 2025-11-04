@@ -23,7 +23,7 @@ const Navbar = () => {
   }, [])
 
   const linkClass = (path) =>
-    `px-3 py-2 rounded-md ${
+    `px-3 py-2 mr-10 text-white rounded-md ${
       location.pathname === path
         ? 'bg-green-700 text-white'
         : 'text-gray-700 hover:bg-green-100'

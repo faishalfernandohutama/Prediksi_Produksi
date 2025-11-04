@@ -1,11 +1,11 @@
 import React from 'react'
-
-const algoritma = () => {
+import Flowchart from './component/flowchart.jsx'
+const Algoritma = () => {
   return (
     <div>
-      
+      <Flowchart />
     </div>
   )
 }
 
-export default algoritma
+export default Algoritma
