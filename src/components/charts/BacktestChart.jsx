@@ -8,10 +8,10 @@ import {
   Label, Legend 
 } from 'recharts';
 
-// Ganti path ini jika gambar latar chart Anda berbeda
-import ChartBackground from '../../../assets/hero.png';
+// --- Path ke gambar latar ---
+import ChartBackground from '../../assets/hero.png';
+// (Sesuaikan path ini jika TIDAK berada di folder yang sama dengan Overview.jsx)
 
-// --- Custom Tooltip (Sama seperti sebelumnya) ---
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p className="text-sm font-bold text-gray-800">{`Tanggal: ${label}`}</p>
         {payload.map((item, index) => (
           <p key={index} className="text-sm font-medium" style={{ color: item.color }}>
-            {`${item.name}: ${item.value} ton`}
+            {`${item.name}: ${item.value ? item.value.toFixed(2) : 'N/A'} ton`}
           </p>
         ))}
       </div>
@@ -31,13 +31,12 @@ const CustomTooltip = ({ active, payload, label }) => {
 const BacktestChart = () => {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [selectedTanaman, setSelectedTanaman] = useState('Minyak Sawit'); // Default
+  const [selectedTanaman, setSelectedTanaman] = useState('Minyak Sawit'); 
 
   const tanamanOptions = ['Minyak Sawit', 'Karet Kering', 'Gula Tebu', 'Kopi', 'Teh'];
 
   // 1. useEffect untuk MEMUAT data CSV
   useEffect(() => {
-    // --- UBAH PATH CSV ---
     Papa.parse('/data/Backtest_All_Raw_Predictions_S1_CatBoost.csv', {
       download: true,
       header: true,
@@ -46,28 +45,34 @@ const BacktestChart = () => {
         setAllData(result.data);
       },
       error: (err) => {
-        console.error("Error parsing CSV:", err);
+        console.error("Error parsing S1 CSV:", err);
       }
     });
   }, []);
 
+  // --- PERBAIKAN UTAMA DI SINI ---
   // 2. useEffect untuk MEMFILTER data
   useEffect(() => {
     const dataForChart = allData
       .filter(row => row.Tanaman === selectedTanaman)
-      .map(row => ({
-        // Buat format tanggal 'YYYY-MM' untuk sumbu X
-        date: `${row.Tahun}-${String(row.Bulan).padStart(2, '0')}`,
-        Tahun: parseInt(row.Tahun),
-        Bulan: parseInt(row.Bulan),
-        // --- UBAH KOLOM DATA ---
-        Produksi_Aktual: parseFloat(row.Produksi_Aktual),
-        Prediksi_S1: parseFloat(row.Prediksi_S1),
-      }))
-      .sort((a, b) => a.Tahun - b.Tahun || a.Bulan - b.Bulan);
+      .map(row => {
+        // Ambil 'YYYY-MM' dari kolom 'Tanggal', misal "2024-01-01" -> "2024-01"
+        const date = row.Tanggal ? row.Tanggal.substring(0, 7) : 'N/A';
+        
+        return {
+          date: date,
+          
+          // Gunakan nama kolom yang BENAR dari CSV
+          Produksi_Aktual: parseFloat(row.Produksi), 
+          Prediksi_S1: parseFloat(row.Prediksi),
+        }
+      })
+      // Urutkan berdasarkan 'date'
+      .sort((a, b) => a.date.localeCompare(b.date));
       
     setFilteredData(dataForChart);
   }, [allData, selectedTanaman]);
+  // --- AKHIR PERBAIKAN ---
 
   return (
     <motion.div
@@ -77,7 +82,6 @@ const BacktestChart = () => {
       viewport={{ once: true }}
       className="relative w-full shadow-2xl rounded-2xl overflow-hidden"
     >
-      {/* Latar belakang (Sama) */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${ChartBackground})` }}
@@ -86,10 +90,8 @@ const BacktestChart = () => {
         className="absolute inset-0 z-10 bg-white/80 backdrop-blur-md border border-white/40"
       />
       
-      {/* Konten Chart (Z-index 20) */}
       <div className="relative z-20 p-6">
         
-        {/* --- UBAH JUDUL dan Filter Dropdown --- */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <h1 className="text-2xl font-archivo-black text-gray-700 text-center md:text-left">
             Hasil Skenario 1 (Baseline)
@@ -124,7 +126,7 @@ const BacktestChart = () => {
               </XAxis>
               <YAxis 
                 tick={{ fill: '#374151' }} 
-                tickFormatter={(value) => `${value} ton`}
+                tickFormatter={(value) => `${value.toFixed(0)} ton`}
               >
                 <Label value="Produksi (ton)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle', fill: '#6b7280' }} />
               </YAxis>
@@ -135,12 +137,12 @@ const BacktestChart = () => {
               />
               <Legend verticalAlign="top" height={36} />
 
-              {/* --- UBAH GARIS (LINE) --- */}
+              {/* DataKeys ini sekarang cocok dengan hasil .map() di atas */}
               <Line
                 type="monotone"
                 dataKey="Produksi_Aktual"
                 name="Aktual"
-                stroke="#4338ca" // Biru/Indigo (Warna utama)
+                stroke="#4338ca" 
                 strokeWidth={3} 
                 dot={false} 
                 activeDot={{ r: 8 }}
@@ -150,9 +152,9 @@ const BacktestChart = () => {
                 type="monotone"
                 dataKey="Prediksi_S1"
                 name="Prediksi S1 (Baseline)"
-                stroke="#d97706" // Oranye/Amber
+                stroke="#d97706" 
                 strokeWidth={2} 
-                strokeDasharray="5 5" // Garis putus-putus
+                strokeDasharray="5 5"
                 dot={false} 
                 activeDot={{ r: 8 }}
                 animationDuration={1600}

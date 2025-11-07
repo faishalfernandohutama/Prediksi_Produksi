@@ -47,7 +47,7 @@ const Navbar = () => {
         <Link to="/" className={linkClass('/')}>Home</Link>
         <Link to="/algoritma" className={linkClass('/algoritma')}>Algoritma</Link>
         <Link to="/dataset" className={linkClass('/dataset')}>Dataset</Link>
-        <Link to="/results" className={linkClass('/results')}>rasults</Link>
+        <Link to="/results" className={linkClass('/results')}>Results</Link>
       </nav>
 
       {/* Tombol hamburger di kiri */}

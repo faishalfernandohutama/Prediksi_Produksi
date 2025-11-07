@@ -2,6 +2,9 @@ import React from 'react'
 import Navbar from '../common/navbar'
 import Footer from '../common/footer'
 import Home from '../../pages/home'
+import Results from '../../pages/results'
+import { Outlet } from 'react-router-dom'
+
 
 const layout = () => {
   return (
@@ -9,9 +12,9 @@ const layout = () => {
       <Navbar />
       <main>
         <Home />
+        <Results />
       </main>
       <Footer />
-      
     </div>
   )
 }

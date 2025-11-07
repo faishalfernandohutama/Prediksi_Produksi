@@ -8,10 +8,10 @@ import {
   Label, Legend 
 } from 'recharts';
 
-// Ganti path ini jika gambar latar chart Anda berbeda
-import ChartBackground from '../../../assets/hero.png';
+// --- PERBAIKAN 1: Path disamakan dengan file lain ---
+import ChartBackground from '../../assets/hero.png';
+// (Sesuaikan path ini jika TIDAK berada di folder yang sama dengan Overview.jsx)
 
-// --- Custom Tooltip (Sama seperti sebelumnya) ---
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p className="text-sm font-bold text-gray-800">{`Tanggal: ${label}`}</p>
         {payload.map((item, index) => (
           <p key={index} className="text-sm font-medium" style={{ color: item.color }}>
-            {`${item.name}: ${item.value} ton`}
+            {`${item.name}: ${item.value ? item.value.toFixed(2) : 'N/A'} ton`}
           </p>
         ))}
       </div>
@@ -31,13 +31,12 @@ const CustomTooltip = ({ active, payload, label }) => {
 const WalkForwardChart = () => {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [selectedTanaman, setSelectedTanaman] = useState('Minyak Sawit'); // Default
+  const [selectedTanaman, setSelectedTanaman] = useState('Minyak Sawit'); 
 
   const tanamanOptions = ['Minyak Sawit', 'Karet Kering', 'Gula Tebu', 'Kopi', 'Teh'];
 
   // 1. useEffect untuk MEMUAT data CSV
   useEffect(() => {
-    // --- UBAH PATH CSV ---
     Papa.parse('/data/WalkForward_S2_Prediksi_Mentah.csv', {
       download: true,
       header: true,
@@ -46,7 +45,7 @@ const WalkForwardChart = () => {
         setAllData(result.data);
       },
       error: (err) => {
-        console.error("Error parsing CSV:", err);
+        console.error("Error parsing S2 CSV:", err);
       }
     });
   }, []);
@@ -56,14 +55,14 @@ const WalkForwardChart = () => {
     const dataForChart = allData
       .filter(row => row.Tanaman === selectedTanaman)
       .map(row => ({
-        // Buat format tanggal 'YYYY-MM' untuk sumbu X
         date: `${row.Tahun}-${String(row.Bulan).padStart(2, '0')}`,
         Tahun: parseInt(row.Tahun),
         Bulan: parseInt(row.Bulan),
-        // --- UBAH KOLOM DATA ---
-        // Pastikan nama kolom di CSV Anda 'Produksi_Aktual' dan 'Prediksi_S2_Optimized'
-        Produksi_Aktual: parseFloat(row.Produksi_Aktual),
-        Prediksi_S2: parseFloat(row.Prediksi_S2_Optimized),
+
+        // Gunakan nama kolom yang BENAR dari CSV S2
+        Produksi_Aktual: parseFloat(row.Produksi), // <-- Diubah dari Produksi_Aktual
+        Prediksi_S2: parseFloat(row.Prediksi), // <-- Diubah dari Prediksi_S2_Optimized
+        
       }))
       .sort((a, b) => a.Tahun - b.Tahun || a.Bulan - b.Bulan);
       
@@ -78,19 +77,19 @@ const WalkForwardChart = () => {
       viewport={{ once: true }}
       className="relative w-full shadow-2xl rounded-2xl overflow-hidden"
     >
-      {/* Latar belakang (Sama) */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${ChartBackground})` }}
       />
+      
+      {/* --- INI ADALAH PERBAIKANNYA (TANDA KUTIP " EKSTRA DIHAPUS) --- */}
       <div
         className="absolute inset-0 z-10 bg-white/80 backdrop-blur-md border border-white/40"
       />
+      {/* --- AKHIR PERBAIKAN --- */}
       
-      {/* Konten Chart (Z-index 20) */}
       <div className="relative z-20 p-6">
         
-        {/* --- UBAH JUDUL dan Filter Dropdown --- */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <h1 className="text-2xl font-archivo-black text-gray-700 text-center md:text-left">
             Hasil Skenario 2 (Walk-Forward)
@@ -125,7 +124,7 @@ const WalkForwardChart = () => {
               </XAxis>
               <YAxis 
                 tick={{ fill: '#374151' }} 
-                tickFormatter={(value) => `${value} ton`}
+                tickFormatter={(value) => `${value.toFixed(0)} ton`}
               >
                 <Label value="Produksi (ton)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle', fill: '#6b7280' }} />
               </YAxis>
@@ -136,12 +135,11 @@ const WalkForwardChart = () => {
               />
               <Legend verticalAlign="top" height={36} />
 
-              {/* --- UBAH GARIS (LINE) --- */}
               <Line
                 type="monotone"
                 dataKey="Produksi_Aktual"
                 name="Aktual"
-                stroke="#4338ca" // Biru/Indigo (Warna utama)
+                stroke="#4338ca" 
                 strokeWidth={3} 
                 dot={false} 
                 activeDot={{ r: 8 }}
@@ -151,7 +149,7 @@ const WalkForwardChart = () => {
                 type="monotone"
                 dataKey="Prediksi_S2"
                 name="Prediksi S2 (Optimized)"
-                stroke="#16a34a" // Hijau
+                stroke="#16a34a" 
                 strokeWidth={2} 
                 dot={false} 
                 activeDot={{ r: 8 }}
