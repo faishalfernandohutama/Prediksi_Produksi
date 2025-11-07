@@ -47,7 +47,7 @@ const Navbar = () => {
         <Link to="/" className={linkClass('/')}>Home</Link>
         <Link to="/algoritma" className={linkClass('/algoritma')}>Algoritma</Link>
         <Link to="/dataset" className={linkClass('/dataset')}>Dataset</Link>
-        <Link to="/results" className={linkClass('/results')}>Hasil</Link>
+        <Link to="/results" className={linkClass('/results')}>rasults</Link>
       </nav>
 
       {/* Tombol hamburger di kiri */}
@@ -63,7 +63,7 @@ const Navbar = () => {
           <Link onClick={() => setIsOpen(false)} to="/" className={linkClass('/')}>Home</Link>
           <Link onClick={() => setIsOpen(false)} to="/algoritma" className={linkClass('/algoritma')}>Algoritma</Link>
           <Link onClick={() => setIsOpen(false)} to="/dataset" className={linkClass('/dataset')}>Dataset</Link>
-          <Link onClick={() => setIsOpen(false)} to="/results" className={linkClass('/results')}>Hasil</Link>
+          <Link onClick={() => setIsOpen(false)} to="/results" className={linkClass('/results')}>results</Link>
         </div>
       )}
     </header>
