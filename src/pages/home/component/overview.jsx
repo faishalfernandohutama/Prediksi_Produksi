@@ -70,16 +70,13 @@ const Overview = () => {
       <div className="relative w-full max-w-5xl mx-auto mb-10 md:max-w-none"> 
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-6xl font-extrabold mb-4 text-gray-900 font-archivo-black tracking-tighter leading-[1.1] lg:text-8xl md:py-6">
-            GOOD FOR<br className='md:hidden'/> THE PLANET.<br className='md:hidden' /> AND <span className='text-orange-300'>YOUR</span><br className='md:hidden' />BUSINESS
+            CATBOOST<br className='md:hidden'/> MACHINE LEARNING.<br className='md:hidden' /> AND <span className='text-orange-300'>PREDICTION</span><br className='md:hidden' />
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6">
-            We are on a mission to help good businesses grow.<br />
-            This is why we reward sustainable businesses with lower fees,<br />
-            freeing up even more of your cash. Get started and access funding in 5 minutes.
+            Disini kita melakukan prediksi produksi<br />
+            Menggunakan metode Category Boosting<br />
+            Prediksi dilakukan jenang waktu 2025 - 2027.
           </p>
-          <div className="bg-green-700 mx-auto inline-block px-8 py-3 rounded-lg hover:bg-green-800 transition">
-            <p className="text-white font-bold">Get Funding</p>
-          </div>
         </div>
         <motion.div
           variants={iconVariants}
@@ -126,8 +123,8 @@ const Overview = () => {
       <div className='mt-10 w-full max-w-6xl lg:max-w-none md:flex md:gap-16 md:items-stretch lg:px-10'>
         <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
           <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>01</p>
-          <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>GROW WITH <span className='text-orange-300'><br className='hidden lg:block' />THE</span> FLOW</h2>
-          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
+          <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>Data Perkebunan <span className='text-orange-300'><br className='hidden lg:block' />Besar</span> BPS</h2>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>Data produksi perkebunan 2009 - 2024</p>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -198,7 +195,7 @@ const Overview = () => {
         <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
           <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>02</p>
           <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>PICTURE <span className='text-orange-300'><br className='hidden lg:block' />OF</span> FARMER</h2>
-          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>We help you preserve your cash, so that you can focus on growing your business and imporve cash flow</p>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>Ada lima komoditas yang diapakai diantara lain (minyak, karet, kopi, gula & teh)</p>
         </div>
         
         <motion.div
@@ -222,7 +219,7 @@ const Overview = () => {
         <div className='mb-4 md:mb-0 md:w-1/2 text-left md:flex md:flex-col md:items-start'>
           <p className='bg-green-500 inline-block px-2 py-1 rounded-full mb-2 font-bold'>03</p>
           <h2 className='font-oswald font-extrabold text-4xl lg:text-8xl'>CATBOOST <span className='text-orange-300'><br className='hidden lg:block' />INSIGHT</span></h2>
-          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>Implementasi model machine learning canggih untuk wawasan data yang lebih mendalam.</p>
+          <p className='text-md my-4 lg:text-2xl lg:mt-auto'>Algoritma yang dipakai merupakan algoritma Category Boosting (CatBoost)</p>
         </div>
         
         {/* Kolom Gambar Kanan */}

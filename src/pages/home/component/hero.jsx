@@ -11,10 +11,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 py-20 text-white">
         <h2 className="text-6xl md:text-8xl font-extrabold font-archivo-black">PRODUKSI</h2>
         <h2 className="text-6xl md:text-8xl font-extrabold text-orange-300 font-archivo-black">PERKEBUNAN <span className="text-white">INDONESIA</span></h2>
-            <div className="bg-green-700 mx-auto inline-block px-8 py-3 rounded-lg my-4">
-                <p className="text-white  font-bold">Get Funding</p>
-            </div>
-            <p>Pay suppliers faster and extend your runway — with AI that <br/> analyses your financials in real time to unlock smarter funding.</p>
+            <p>Prediksi Produksi Perkebunan Besar 2025 - 2027 <br /> menggunakan Metode Category Boosting.</p>
       </div>
     </section>
   )
