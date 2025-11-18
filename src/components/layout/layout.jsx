@@ -12,6 +12,7 @@ const Layout = () => {
       <Navbar />
       <main>
         <Outlet />
+        <Results />
       </main>
       <Footer />
     </div>
