@@ -6,16 +6,17 @@ import Results from '../../pages/results'
 import { Outlet } from 'react-router-dom'
 
 
-const layout = () => {
+const Layout = () => {
   return (
     <div className='min-h-screen flex flex-col'>
       <Navbar />
       <main>
-        <Home />
-        <Results />
+-        <Home />
+-        <Results />
++        <Outlet />
       </main>
       <Footer />
     </div>
   )
 }
-export default layout
+export default Layout
